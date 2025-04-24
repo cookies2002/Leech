@@ -1,4 +1,5 @@
 version: "3.3"
+
 services:
   gluetun:
     image: qmcgaw/gluetun:v3.34
@@ -21,13 +22,11 @@ services:
       - "80:80"
       - "8080:8080"
     restart: on-failure
-  
+
   app:
     build: .
-    network_mode: "service:gluetun"  # Use VPN network from gluetun container
+    container_name: telegram-bot
+    network_mode: "service:gluetun"  # Uses VPN network
     command: bash start.sh
     restart: on-failure
-    ports:
-      - "80:80"
-      - "8080:8080"  # This will bind to the same ports as gluetun, ensure there's no conflict
-      
+    # ✅ Removed ports to avoid conflict with Gluetun
