@@ -44,4 +44,6 @@ uvloop
 xattr
 yt-dlp
 pytz
+python-dotenv
+
 
